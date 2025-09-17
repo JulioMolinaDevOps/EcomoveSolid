@@ -3,6 +3,9 @@
 package com.EcoMove.Controladores;
 
 import com.EcoMove.Entidades.Prestamo;
+import com.EcoMove.ImplementService.PrestamoService;
+import org.springframework.http.HttpStatus;
+
 
 import com.EcoMove.InterfaceServices.IPrestamoService;
 import org.springframework.http.ResponseEntity;

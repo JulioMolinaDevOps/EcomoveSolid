@@ -1,1 +1,6 @@
-package com.EcoMove.InterfaceServices;public interface TarifaStrategy {    double calcular(int minutos);    String tipoTransporte();}
+package com.EcoMove.PatronStrategy;
+
+public interface TarifaStrategy {
+    double calcular(int minutos);
+    String tipoTransporte();
+}
