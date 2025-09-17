@@ -1,0 +1,1 @@
+package com.EcoMove.PatronStrategy;public class TarifaScooter {}

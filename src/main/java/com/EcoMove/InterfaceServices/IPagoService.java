@@ -1,0 +1,1 @@
+package com.EcoMove.InterfaceServices;public interface IPagoService {}
