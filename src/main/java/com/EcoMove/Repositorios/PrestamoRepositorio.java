@@ -1,0 +1,1 @@
+package com.EcoMove.Repositorios;import com.EcoMove.Entidades.Prestamo;import org.springframework.data.mongodb.repository.MongoRepository;public interface PrestamoRepositorio extends MongoRepository<Prestamo,String> {}

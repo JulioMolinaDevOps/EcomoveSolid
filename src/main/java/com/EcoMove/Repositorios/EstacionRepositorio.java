@@ -1,0 +1,1 @@
+package com.EcoMove.Repositorios;import com.EcoMove.Entidades.Estacion;import org.springframework.data.mongodb.repository.MongoRepository;public interface EstacionRepositorio extends MongoRepository<Estacion, String> { }

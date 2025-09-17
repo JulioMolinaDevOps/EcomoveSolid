@@ -1,0 +1,1 @@
+package com.EcoMove.Repositorios;import com.EcoMove.Entidades.Transporte;import org.springframework.data.mongodb.repository.MongoRepository;public interface TransporteRepositorio extends MongoRepository<Transporte,String> {}

@@ -1,0 +1,1 @@
+package com.EcoMove.Entidades;import lombok.Data;import org.springframework.data.annotation.Id;import org.springframework.data.mongodb.core.mapping.Document;import java.util.List;@Data@Document(collection = "estaciones")public class Estacion {    @Id    private String id;    private String ubicacion;    private int capacidad;    private List<String> transportes;}
