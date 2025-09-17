@@ -2,7 +2,7 @@ package com.EcoMove.Controladores;
 
 
 import com.EcoMove.Entidades.Prestamo;
-import com.EcoMove.Servicio.PrestamoService;
+import com.EcoMove.ImplementService.PrestamoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
