@@ -68,6 +68,7 @@ public class UsuarioControlador {
         response.setUserId(usuario.getId());
         response.setNombre(usuario.getNombre());
         response.setCorreo(usuario.getCorreo());
+        response.setTipo(usuario.getTipo());
         
         return ResponseEntity.ok(response);
     }
