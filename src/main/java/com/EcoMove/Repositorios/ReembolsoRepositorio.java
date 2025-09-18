@@ -1,0 +1,1 @@
+package com.EcoMove.Repositorios;import com.EcoMove.Entidades.Reembolso;import org.springframework.data.mongodb.repository.MongoRepository;import java.util.List;public interface ReembolsoRepositorio extends MongoRepository<Reembolso, String> {    List<Reembolso> findByUsuarioId(String usuarioId);    List<Reembolso> findByPrestamoId(String prestamoId);}

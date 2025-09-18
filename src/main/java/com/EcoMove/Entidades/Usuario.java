@@ -12,7 +12,9 @@ public class Usuario {
     private String id;
     private String nombre;
     private String correo;
-    private String documento;
     private String password;
-    private TipoUsuario tipo = TipoUsuario.USUARIO; // Por defecto es usuario normal
+    private TipoUsuario rol;
+
+
+
 }
