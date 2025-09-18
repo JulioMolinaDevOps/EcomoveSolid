@@ -75,39 +75,3 @@ public class UsuarioControlador {
     }
 }
 
-package com.EcoMove.Controladores;
-
-import com.EcoMove.Entidades.Usuario;
-import com.EcoMove.InterfaceServices.IUsuarioService;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-
-@RestController
-@RequestMapping("/api/usuarios")
-public class UsuarioControlador {
-    private final IUsuarioService usuarioService;
-
-    public UsuarioControlador(IUsuarioService usuarioService) {
-        this.usuarioService = usuarioService;
-    }
-
-    @PostMapping
-    public ResponseEntity<Usuario> crear(@RequestBody Usuario u) {
-        return ResponseEntity.ok(usuarioService.crear(u));
-    }
-
-    @GetMapping
-    public ResponseEntity<List<Usuario>> listar() {
-        return ResponseEntity.ok(usuarioService.listar());
-    }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Usuario> buscar(@PathVariable String id) {
-        return usuarioService.buscarPorId(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
-    }
-}
-

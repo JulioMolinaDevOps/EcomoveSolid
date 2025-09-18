@@ -23,6 +23,7 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/api/pago-online/stripe/checkout/**").permitAll()
                 .requestMatchers("/api/**").permitAll()
                 .anyRequest().authenticated())
             .sessionManagement(session -> session
