@@ -35,15 +35,22 @@ public class StripePagoController {
                 }
             } catch (Exception ignored) {}
 
-            String tipoTransporte = request.getTransporteId();
+            String descripcionTransporte = request.getTransporteId();
             try {
                 java.util.Optional<Transporte> tOpt = transporteService.buscarPorId(request.getTransporteId());
-                if (tOpt.isPresent() && tOpt.get().getTipo() != null && !tOpt.get().getTipo().isBlank()) {
-                    tipoTransporte = tOpt.get().getTipo();
+                if (tOpt.isPresent()) {
+                    Transporte t = tOpt.get();
+                    String tipo = t.getTipo() != null ? t.getTipo() : "";
+                    String marca = t.getMarca() != null ? t.getMarca() : "";
+                    StringBuilder sb = new StringBuilder();
+                    if (!tipo.isBlank()) sb.append(tipo);
+                    if (!marca.isBlank()) { if (sb.length()>0) sb.append(" "); sb.append(marca); }
+                    String detalle = sb.toString().trim();
+                    if (!detalle.isEmpty()) descripcionTransporte = detalle;
                 }
             } catch (Exception ignored) {}
 
-            String descripcion = "Alquiler " + tipoTransporte + " por " + usuarioNombre;
+            String descripcion = "Alquiler " + descripcionTransporte + " por " + usuarioNombre;
             String url = stripePagoService.crearSesionPago(request.getMonto(), descripcion, currency);
             return ResponseEntity.ok(url);
         } catch (Exception e) {

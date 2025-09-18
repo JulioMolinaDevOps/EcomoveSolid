@@ -19,8 +19,8 @@ public class StripePagoService {
         long unitAmount = Math.round(monto * 100);
         SessionCreateParams params = SessionCreateParams.builder()
             .setMode(SessionCreateParams.Mode.PAYMENT)
-            .setSuccessUrl("https://tuapp.com/success")
-            .setCancelUrl("https://tuapp.com/cancel")
+            .setSuccessUrl("http://localhost:3000") // Cambia esto por la URL de tu front-end
+            .setCancelUrl("http://localhost:3000")
             .addLineItem(
                 SessionCreateParams.LineItem.builder()
                     .setQuantity(1L)
