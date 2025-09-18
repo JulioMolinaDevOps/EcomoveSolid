@@ -11,8 +11,12 @@ public class StripePagoService {
     @Value("${stripe.secret.key}")
     private String stripeSecretKey;
 
-    public String crearSesionPago(Double monto, String descripcion) throws Exception {
+    public String crearSesionPago(Double monto, String descripcion, String currency) throws Exception {
         Stripe.apiKey = stripeSecretKey;
+        if (currency == null || currency.isBlank()) {
+            currency = "usd";
+        }
+        long unitAmount = Math.round(monto * 100);
         SessionCreateParams params = SessionCreateParams.builder()
             .setMode(SessionCreateParams.Mode.PAYMENT)
             .setSuccessUrl("https://tuapp.com/success")
@@ -22,8 +26,8 @@ public class StripePagoService {
                     .setQuantity(1L)
                     .setPriceData(
                         SessionCreateParams.LineItem.PriceData.builder()
-                            .setCurrency("pen")
-                            .setUnitAmount((long)(monto * 100))
+                            .setCurrency(currency)
+                            .setUnitAmount(unitAmount)
                             .setProductData(
                                 SessionCreateParams.LineItem.PriceData.ProductData.builder()
                                     .setName(descripcion)
