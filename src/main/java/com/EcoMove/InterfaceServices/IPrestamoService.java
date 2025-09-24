@@ -1,8 +1,10 @@
 package com.EcoMove.InterfaceServices;
 
 import com.EcoMove.Entidades.Prestamo;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 
 public interface IPrestamoService {
     Prestamo crearPrestamo(Prestamo p);

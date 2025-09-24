@@ -69,7 +69,7 @@ public class UsuarioControlador {
         response.setUserId(usuario.getId());
         response.setNombre(usuario.getNombre());
         response.setCorreo(usuario.getCorreo());
-        response.setTipo(usuario.getTipo());
+        response.setTipo(usuario.getRol());
         
         return ResponseEntity.ok(response);
     }

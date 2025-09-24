@@ -1,10 +1,11 @@
 package com.EcoMove.InterfaceServices;
 
 import com.EcoMove.Entidades.Transporte;
-import com.sun.jdi.connect.Transport;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
 
 public interface ITransporteService {
     Transporte crear(Transporte e);

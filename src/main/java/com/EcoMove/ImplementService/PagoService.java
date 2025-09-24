@@ -21,13 +21,9 @@ public class PagoService implements IPagoService {
     public Pago registrar(Pago pago) {
         return pagoRepositorio.save(pago);
     }
-
-
     public List<Pago> listar() {
         return pagoRepositorio.findAll();
     }
-
-
     public Optional<Pago> buscarPorId(String id) {
         return pagoRepositorio.findById(id);
     }
