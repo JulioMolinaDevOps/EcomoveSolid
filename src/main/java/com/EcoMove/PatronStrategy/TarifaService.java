@@ -17,6 +17,6 @@ public class TarifaService {
                 .filter(e -> e.tipoTransporte().equalsIgnoreCase(tipoTransporte))
                 .findFirst()
                 .map(e -> e.calcular(minutos))
-                .orElseThrow(() -> new IllegalArgumentException("Transporte no soportado"));
+                .orElseThrow(() -> new IllegalArgumentException("Transporte no "));
     }
 }
