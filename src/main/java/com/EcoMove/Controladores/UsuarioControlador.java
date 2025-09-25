@@ -1,7 +1,8 @@
-
 package com.EcoMove.Controladores;
 
 import com.EcoMove.Entidades.Usuario;
+import com.EcoMove.Entidades.Users.Admin;
+import com.EcoMove.Entidades.Users.Empleado;
 import com.EcoMove.Repositorios.UsuarioRepositorio;
 import com.EcoMove.InterfaceServices.IJwtService;
 import com.EcoMove.InterfaceServices.ISecurityService;
@@ -15,23 +16,34 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/usuarios")
 public class UsuarioControlador {
+
     private final UsuarioRepositorio usuarioRepositorio;
     private final ISecurityService securityService;
     private final IJwtService jwtService;
 
-    public UsuarioControlador(UsuarioRepositorio usuarioRepositorio, ISecurityService securityService, IJwtService jwtService) {
+    public UsuarioControlador(UsuarioRepositorio usuarioRepositorio, ISecurityService securityService,
+            IJwtService jwtService) {
         this.usuarioRepositorio = usuarioRepositorio;
         this.securityService = securityService;
         this.jwtService = jwtService;
     }
 
-    @PostMapping
-    public ResponseEntity<Usuario> crearUsuario(@RequestBody Usuario u) {
-        // Hash de la contraseña antes de guardar
-        u.setPassword(securityService.hashPassword(u.getPassword()));
-        Usuario usuarioGuardado = usuarioRepositorio.save(u);
+
+    @PostMapping("/admin")
+    public ResponseEntity<Usuario> crearAdmin(@RequestBody Admin admin) {
+        admin.setPassword(securityService.hashPassword(admin.getPassword()));
+        Usuario usuarioGuardado = usuarioRepositorio.save(admin);
         return ResponseEntity.ok(usuarioGuardado);
     }
+
+    @PostMapping("/empleado")
+    public ResponseEntity<Usuario> crearEmpleado(@RequestBody Empleado empleado) {
+        empleado.setPassword(securityService.hashPassword(empleado.getPassword()));
+        Usuario usuarioGuardado = usuarioRepositorio.save(empleado);
+        return ResponseEntity.ok(usuarioGuardado);
+    }
+
+
 
     @GetMapping
     public ResponseEntity<List<Usuario>> listar() {
@@ -44,6 +56,7 @@ public class UsuarioControlador {
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
+
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequestDTO loginRequest) {
@@ -62,16 +75,14 @@ public class UsuarioControlador {
 
         // Generar token JWT
         String token = jwtService.generateToken(usuario.getId(), usuario.getCorreo());
-        
+
         // Crear respuesta
         LoginResponseDTO response = new LoginResponseDTO();
         response.setToken(token);
         response.setUserId(usuario.getId());
         response.setNombre(usuario.getNombre());
         response.setCorreo(usuario.getCorreo());
-        response.setTipo(usuario.getRol());
-        
+
         return ResponseEntity.ok(response);
     }
 }
-
