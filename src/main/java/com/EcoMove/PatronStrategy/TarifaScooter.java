@@ -1,0 +1,1 @@
+package com.EcoMove.PatronStrategy;import org.springframework.stereotype.Component;@Componentpublic class TarifaScooter implements TarifaStrategy{    @Override    public double calcular(int minutos) {        return minutos * 0.8;    }    @Override    public String tipoTransporte() {        return "Scooter";    }}

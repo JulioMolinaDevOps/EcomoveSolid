@@ -1,0 +1,1 @@
+package com.EcoMove.InterfaceServices;import com.EcoMove.Entidades.Reembolso;import java.util.List;public interface IReembolsoService {    Reembolso registrar(Reembolso reembolso);    List<Reembolso> historialPorUsuario(String usuarioId);    List<Reembolso> historialPorPrestamo(String prestamoId);}

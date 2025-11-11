@@ -1,0 +1,33 @@
+package com.EcoMove.ImplementService;
+
+import com.EcoMove.Entidades.Usuario;
+import com.EcoMove.InterfaceServices.IUsuarioService;
+import com.EcoMove.Repositorios.UsuarioRepositorio;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
+@Service
+public class UsuarioService implements IUsuarioService {
+    private final UsuarioRepositorio usuarioRepositorio;
+
+    public UsuarioService(UsuarioRepositorio usuarioRepositorio) {
+        this.usuarioRepositorio = usuarioRepositorio;
+    }
+
+    @Override
+    public Usuario crear(Usuario u) {
+        return usuarioRepositorio.save(u);
+    }
+
+    @Override
+    public List<Usuario> listar() {
+        return usuarioRepositorio.findAll();
+    }
+
+    @Override
+    public Optional<Usuario> buscarPorId(String id) {
+        return Optional.ofNullable(usuarioRepositorio.findById(id).orElse(null));
+    }
+}
